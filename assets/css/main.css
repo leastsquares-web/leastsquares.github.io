@@ -20,8 +20,8 @@
 /* Colors */
 :root {
   --color-default: #222222;
-  --color-primary: #c46d36;
-  --color-secondary: #b92e00;
+  --color-primary: #085fd4;                 /*#c46d36;*/
+  --color-secondary: #ff3838;         /*#b92e00*/
 }
 
 /* Smooth scroll behavior */
@@ -238,7 +238,7 @@ section {
 # Header
 --------------------------------------------------------------*/
 .topbar {
-  background: #b92e00;
+  background: linear-gradient(to bottom,#00008b,#085fd4);            /*#b92e00;*/
   height: 40px;
   font-size: 14px;
   transition: all 0.5s;
