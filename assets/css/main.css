@@ -21,7 +21,7 @@
 :root {
   --color-default: #222222;
   --color-primary: #085fd4;                 /*#c46d36;*/
-  --color-secondary: #ff3838;         /*#b92e00*/
+  --color-secondary: #250060;         /*#b92e00*/
 }
 
 /* Smooth scroll behavior */
@@ -193,7 +193,7 @@ section {
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
-#preloader {
+/* #preloader {
   position: fixed;
   inset: 0;
   z-index: 999999;
@@ -223,7 +223,7 @@ section {
   100% {
     transform: rotate(360deg);
   }
-}
+} */
 
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
@@ -1870,7 +1870,7 @@ section {
 .hero {
   width: 100%;
   position: relative;
-  background: var(--color-primary);
+  background-color: #000000a0;
   padding: 60px 0 0 0;
 }
 
