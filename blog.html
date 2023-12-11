@@ -13,7 +13,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@5.5.3/dist/ionicons.min.css" integrity="sha384-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous" />
 
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Page Title</title>
+  <script>
+    if (location.pathname.endsWith('.html')) {
+      const newPath = location.pathname.replace(/\.html$/, '');
+      window.history.replaceState({}, '', newPath);
+    }
+  </script>
 
   <title >leastsquares</title>
   <meta content="" name="description">
