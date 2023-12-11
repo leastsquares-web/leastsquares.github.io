@@ -163,6 +163,94 @@
                 </ul>
               <br>
               <img src = "assets/img/hf.jpg">
+
+              <br>
+              <h4><strong>Permissions Required:</strong></h4>
+              <br>
+              <p>For creating CDF, we will need a service account with the following permissions</p>
+              <br>
+                  <ul>
+                    <li>Cloud Data Fusion Runner</li>
+                    <li>Dataproc Worker</li>
+                    <li>BigQuery Data Admin</li>
+                </ul>
+              <p>Also, we need to give the Service Account user permission to the default data fusion account. To do that, select the created service account → Manage access → Add Principals → Search and select Default Datafusion service account → Give Service Account User permission.</p>
+              <br>
+              <h4><strong>Create a Cloud Data Fusion instance</strong></h4>
+              <br>
+              <img src = "assets/img/hf2.jpg">
+              <br>
+                              <ul>
+                    <li>Click Create an Instance.</li>
+                    <li>Enter an Instance name.</li>
+                    <li>Enter a Description for your instance.</li>
+                    <li>Enter the Region in which to create the instance.</li>
+                    <li>Choose the Cloud Data Fusion Version to use.</li>
+                    <li>Choose the Cloud Data Fusion Edition.</li>
+                    <li>For Cloud Data Fusion versions 6.2.3 and later, in the Authorization field, choose the Dataproc service account to use for running your Cloud Data Fusion pipeline in Dataproc. The default value, Compute Engine account, is pre-selected.</li>
+                    <li>Click Create.</li>
+                </ul>
+              <p>It takes up to 20-30 minutes for the instance creation process to complete. While Cloud Data Fusion creates your instance, a progress wheel displays next to the instance name on the Instances page. After completion, it turns into a green check mark and indicates that you can start using the instance.</p>
+
+              <img src = "assets/img/hf3.jpg">
+              <ul>
+                    <li>In the instance Actions column, click the View Instance link.</li>
+                    <li>In the Cloud Data Fusion web interface, use the left navigation panel to navigate to the page you need.</li>
+                </ul>
+              <img src = "assets/img/hf4.jpg">
+                            <ul>
+                    <li>Click on Studio under the Pipeline section to hop right into creating a pipeline.</li>
+                </ul>
+              <img src = "assets/img/hf5.jpg">
+              <br>
+              <p><strong>Source: </strong>It is where one can find and configure the data sources for data integration pipelines.</p>
+              <p><strong>Transform: </strong>It consists of a variety of transformation operators that can be used to modify and shape the data. These operators include functions for data cleansing, filtering, aggregating, joining, splitting, deriving new columns, and more.</p>
+              <p><strong>Analytics: </strong>It has a few analytics plugins that can be used for analyzing the data.</p>
+              <p><strong>Sink: </strong>It consists of a variety of sink connectors (destinations) that can be used to connect different target systems or data storage platforms. These connectors could include databases (e.g., PostgreSQL, MySQL), cloud storage (e.g., Google Cloud Storage, Amazon S3), data warehouses (e.g., Google BigQuery, Snowflake), messaging systems (e.g., Apache Kafka, Google Cloud Pub/Sub), and more.</p>
+              <p><strong>Conditions and Actions: </strong>It is used to control the flow of the pipelines. Conditions can be used to branch the pipeline into two or more paths, depending on whether a certain condition is met. Actions are used to perform custom logic or operations at certain points in the pipeline.</p>
+              <p><strong>Error Handlers and Alerts: </strong>It allows one to configure how Data Fusion responds to errors that occur during the execution of a pipeline. One can use error handlers to specify what action Data Fusion should take when an error occurs, such as retrying the operation, failing the pipeline, or sending an alert. Alerts can also be specified on who should be notified when an error occurs.</p>
+           
+            <br>
+              <h4><strong>Creating a pipeline:</strong></h4>
+              <p>For the demo purpose, we’ll be creating a simple pipeline where we extract data from Cloud Mysql and load it into Bigquery.</p>
+              <ul>
+                    <li>Give a name for the pipeline.</li>
+                    <li>From the source click on Cloud Mysql.</li>
+                    <li>From the sink section click on BigQuery.</li>
+                                <li>Connect Cloud Mysql to BigQuery.</li>
+                </ul>
+              <p>Now your screen will look like the following:</p>
+              <br>
+              <img src = "assets/img/hf6.jpg">
+              <h6 style="text-align: center;">Data Fusion Interface</h6>
+              <br>
+              <p>Fill up the details that are required to set up the pipeline by clicking on the properties to set up the connection to Cloudsql MySQL Instance. Repeat the same for Bigquery.</p>
+              <br>
+              <img src = "assets/img/hf7.jpg">
+               <h6 style="text-align: center;">CloudSQL MySQL Properties</h6>
+              <br>
+              <p>(Note: If you don’t have a JDBC driver for Cloudsql Mysql, Install it from the HUB section.)</p>
+              <br>
+              <img src = "assets/img/hf8.jpg">
+               <h6 style="text-align: center;">CloudSQL MySQL Properties</h6>
+              <br>
+              <img src = "assets/img/hf9.jpg">
+               <h6 style="text-align: center;">BigQuery Properties</h6>
+              <br>
+                <img src = "assets/img/hf10.jpg">
+               <h6 style="text-align: center;">BigQuery Properties</h6>
+              <br>
+                <img src = "assets/img/hf11.jpg">
+               <h6 style="text-align: center;">BigQuery Properties</h6>
+              <br>
+              <p>Click on Validate to test the connection. Resolve the errors if there is any. Once that is done all there is left is to deploy the pipeline and click RUN.</p>
+            <h4><strong>View the Results: </strong></h4>
+                  <br>
+                <img src = "assets/img/hf12.jpg">
+              <p>Go to the BigQuery interface and select the table to which you loaded the data and view whether the data has been loaded.</p>
+                            <br>
+                <img src = "assets/img/hf13.jpg">
+               <h6 style="text-align: center;">BigQuery Interface</h6>
             </div>
           </div>
 
