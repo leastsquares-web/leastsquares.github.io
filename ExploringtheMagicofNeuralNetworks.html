@@ -178,7 +178,7 @@
               <p>we get 32 by multiplying zero with 1.8 and adding 32 like we see here in this equation. Similarly, an input value of 10 refers to a temperature of 10 degree Celsius which corresponds to 50 degree Fahrenheit. we get 50 multiplying 10 with 1.8 and adding 32 using the above equation.</p>
               <p>What your brain did to find out the relationship between these specific inputs and outputs is exactly what machine learning algorithms performs. In other words, given a set of inputs and the corresponding outputs, machine learning algorithms will find the hidden patterns and relationship between the inputs to the outputs.</p>
               <br>
-              <img src="assets/img/emnn5.png" alt="Centered Image" style= "justify-content: center; align-items: center; width: 500px; height: 250px;">
+              <img src="assets/img/emnn5.png" alt="Centered Image" style= "justify-content: center; align-items: center; width: 575px; height: 250px;">
               <h6 style="text-align: center;">Traditional Programming vs Machine Learning</h6>
               <br> 
               <h3><strong>Traditional Approach</strong></h3>
@@ -192,12 +192,105 @@
                   F = C * 1.8 + 32
                   return F
               </pre>
-              <br>
               <p>Here the function takes the input values C. Then computes the output value F using the explicit algorithm that you wrote down and finally returns the output value F. </p>
-                
+              <img src="assets/img/emnn6.png" alt="Centered Image" style= "justify-content: center; align-items: center; width: 575px; height: 250px;">
+              <br> 
+              <h3><strong>Machine Learning Approach</strong></h3>              
+              <br>
+              <p>On the other hand, the machine learning approach only includes the input and output; it does not include the algorithm. So it looks like this.</p>  
+               <img src="assets/img/emnn7.png" alt="Centered Image" style= "justify-content: center; align-items: center; width: 575px; height: 250px;">
+              <p>In the realm of machine learning, neural networks (NNs) serve as a vital foundation for solving a diverse range of problems. These networks are not merely single algorithms but rather a versatile class of algorithms that underpin the essence of modern machine learning. They excel in the art of discovering intricate patterns and representations within data, making them invaluable for various applications, from classification and regression to the recognition of complex patterns.</p>
+              <p>For the specific use case of converting Celsius to Fahrenheit, a single-layer neural network can adeptly capture the linear relationship between temperature values in two different scales. This simplified neural network architecture comprises just two layers: an input layer and an output layer. The input layer takes the Celsius temperature as input, and through the network's computational prowess, it elegantly transforms it into its Fahrenheit counterpart. This streamlined design showcases the efficiency of neural networks in handling straightforward yet essential tasks, and while it may be a minimalistic illustration of their capabilities, it exemplifies the adaptability and power inherent in these remarkable tools of modern machine learning. </p>
+              <br>
+              <h3><strong>Coding Part</strong></h3>  
+              <br>
+              <p>Python and TensorFlow were used to complete this example. </p>
+              <h4>Importing Libraries</h4>
+              <pre>
+                import tensorflow as tf
+                import numpy as np
+                import matplotlib.pyplot as plt
+              </pre>
+                <br>
+               <h4>Creating Training Data</h4>
+              <pre>
+                celsius = np.array([-30, -20, -10, 0, 10, 20, 30, 40], dtype=float)
+                fahrenheit = np.array([-22, -4, 14, 32, 50, 68, 86, 104], dtype=float)
+              </pre>
+                <br>
+                <h4>Define the Model</h4>
+                <ul>
+                  <li> input_shape=[1] — This specifies that the input to this layer is a single value.</li>
+                  <li>units=1 — This specifies the number of neurons in the layer. The number of neurons defines how many internal variables the layer has to try to learn how to solve the problem.</li>
+                </ul>
+                <pre>
+                  #Build a layer 
+                  model = tf.keras.Sequential([
+                  tf.keras.layers.Dense(units=1, input_shape=[1])])
+                </pre>
+                <br>
+                <h4>Compile the Model</h4>
+                <ul>
+                  <li><strong>Loss function</strong> — A way of measuring how far off predictions are from the desired outcome. (The measured difference is called the "loss".)</li>
+                  <li><strong>Optimizer function</strong> — A way of adjusting internal values in order to reduce the loss The loss function (mean squared error)and the optimizer (Adam) used here are standard for simple models like this one, but many others are available.</li>
+                </ul>
+                <pre>
+                  model.compile(loss='mean_squared_error',optimizer=tf.keras.optimizers.Adam(0.1))
+                </pre>
+                <br>
+                <h4>Train the Model</h4>
+                <p>The first argument is the inputs, the second argument is the desired outputs. The epochs argument specifies how many times this cycle should be run</p>
+                <pre>
+                  history = model.fit(celsius, fahrenheit, epochs=1000)
+                  print('done')
+                </pre>
+                <img src="assets/img/emnn8.png" alt="Centered Image" style= "justify-content: center; align-items: center;">
+                <h6 style="text-align: center;">Model Training</h6>
+                <br>
+                <h4>Visualize the Model</h4>
+                <p>The fit method returns a history object. We can use this object to plot how the loss of our model goes down after each training epoch.</p>
+                <pre>
+                  plt.plot(history.history['loss'])
+                  plt.xlabel('Epoch Number')
+                  plt.ylabel("Loss Magnitude")
+                  plt.title("Celsius to Fahrenheit")
+                </pre>
+                <img src="assets/img/emnn9.png" alt="Centered Image" style= "justify-content: center; align-items: center;width: 450px; height: 425px;">
+                <h6 style="text-align: center;">Celsius to Fahrenheit loss plot</h6>
+                <br>
+                <h4>Model to Predict Values</h4>
+                <br>
+                <p>Now you have a model that has been trained to learn the relationship between celsius and fahrenheit</p>
+                <pre>
+                  print(model.predict([96.0]))
+                </pre>
+                 <img src="assets/img/emnn10.png" alt="Centered Image" style= "justify-content: center; align-items: center;">
+                 <h6 style="text-align: center;">Model Predicted Value</h6>
+                <br>
+                <p>The correct answer is 96×1.8+32=204.8000, so our model is doing really well.</p>
+                <br>
+                <h4>Looking at the layer weights</h4>
+                <br>
+                <p>let's print the internal variables of the Dense layer.</p>
+                <pre>
+                  layer1.get_weights()
+                </pre>
+                <img src="assets/img/emnn11.png" alt="Centered Image" style= "justify-content: center; align-items: center;">
+                <h6 style="text-align: center;">Model weights</h6>
+                <br>
+                <p>The first variable is close to ~1.8 and the second to ~32. These values (1.8 and 32) are the actual variables in the real conversion formula.</p>
+                <br>
+                <h3><strong>Why Deep Learning?</strong></h3>
+                <br>
+                <p>In our example, traditional programming provides a straightforward solution. However, Deep Learning's true power lies in its ability to handle complex problems where the relationship between inputs and outputs is not easily expressed through a simple formula. It excels when the algorithm needs to be learned rather than explicitly defined. This article just scratches the surface; stay tuned for the next part, where we will delve into the mathematical concepts behind Neural Networks.</p>
+                <p>Based on this example we have made our daily bites on the name <strong>"Paramteres in Deep Neural Network"</strong></p>
+                <img src="assets/img/emnn12.png" alt="Centered Image" style= "justify-content: center; align-items: center; width: 480px; height: 480px;">
+                <br>
+                <h3><strong>Conclusion</strong></h3>
+                <br>
+                <p>The simple task of converting Celsius to Fahrenheit, which can be solved with a simple Python function, demonstrates the contrast between traditional programming and machine learning. Deep Learning shines when it comes to tackling complex, non-linear problems, and this is just the beginning of its capabilities. As we venture deeper into the realm of Neural Networks, we will unlock the mathematical magic behind these powerful systems</p>
               </div>
-                          
-            
+                         
             
             
             
